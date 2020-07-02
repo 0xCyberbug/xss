@@ -1,0 +1,57 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>June XSS Challenge - Intigriti</title>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@intigriti">
+    <meta name="twitter:creator" content="@intigriti">
+    <meta name="twitter:title" content="June XSS Challenge - Intigriti">
+    <meta name="twitter:description" content="Find the XSS and WIN a Burp Suite Pro license.">
+    <meta name="twitter:image" content="https://challenge-june.intigriti.io/june.jpg">
+    <meta property="og:url" content="https://challenge-june.intigriti.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="June XSS Challenge - Intigriti" />
+    <meta property="og:description" content="Find the XSS and WIN a Burp Suite Pro license." />
+    <meta property="og:image" content="https://challenge-june.intigriti.io/june.jpg" />
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      window.onhashchange = function(hash){
+          loadChallenge(location.hash);
+      }
+
+      window.onmessage = function(e) {
+      	if (e.source == challenge.contentWindow &&
+      		'http://0xcyberbug.github.io/xss'.search(e.origin.replace(/\./g,'\\.')) > -1)
+      		location.href = e.data;
+      }
+
+      window.onload = function(){
+        var hash = location.hash;
+        if(!hash){
+            window.location.hash = "june";
+        }
+        else{
+            loadChallenge(hash);
+        }
+      }
+
+      function loadChallenge(hash){
+          hash = hash.substr(1);
+          var frame = document.createElement("frame");
+          frame.id = `challenge`;
+          frame.src = `./challenges/${hash}.html`;
+          document.body.appendChild(frame);
+      }
+    </script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div id="loading-container">
+      <div id="loading">
+        <img src="./logo-cutout.png">
+        <p>Loading</p>
+      </div>
+    </div>
+  </body>
+</html>
